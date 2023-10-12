@@ -3,23 +3,26 @@ from tkinter import messagebox
 import requests
 from fuzzywuzzy import fuzz
 
-# Keywords associated with various content warnings
+# Dictionary for keyword-based content warnings
 KEYWORD_WARNINGS = {
-    "violence": ["violence", "war", "fight", "battle", "kill", "assault", "aggression", "attack", "combat", "conflict", "struggle", "hit", "weapon", "murder", "death", "blood"],
-    "strong language": ["curse", "swear", "explicit language", "profanity", "vulgar", "offensive", "obscene", "slur", "insult", "abusive language", "expletive", "foul"],
-    "sexual content": ["sex", "sexual", "intimacy", "explicit scene", "seduction", "nudity", "erotic", "romance", "sensual", "lust", "passionate", "kiss", "affair", "mature themes"],
-    "drug use": ["drug", "addiction", "alcohol", "substance abuse", "narcotic", "intoxication", "high", "dose", "overdose", "meth", "cocaine", "heroin", "smoke", "cannabis", "marijuana", "pill", "prescription", "illegal substance"],
-    "horror themes": ["horror", "ghost", "spirit", "haunt", "scare", "terror", "nightmare", "fear", "eerie", "supernatural", "demon", "evil", "darkness", "curse", "monster", "zombie", "vampire", "witchcraft"],
-    "trauma": ["traumatic", "tragedy", "trauma", "painful", "disturbing", "upsetting", "shocking", "harrowing", "suffering", "anguish", "grief", "loss", "heartbreak", "abuse", "mistreatment", "maltreatment", "neglect", "injury"]
+    "Animal Abuse": ["animal", "cruelty", "neglect", "harm", "suffering"],
+    "Sexual Violence": ["rape", "molestation", "sexual assault", "non-consensual", "nonconsensual"],
+    "Body Image/Disordered Eating": ["body image", "eating disorder", "anorexia", "bulimia", "body dysmorphia"],
+    "Self-Harm/Suicide": ["self-harm", "suicide", "cutting", "overdose", "self-inflict"],
+    "Discrimination/Hate Crimes": ["discrimination", "racism", "homophobia", "sexism", "hate crime", "prejudice"],
+    "Violence & Graphic Content": ["violence", "graphic", "gore", "brutal", "vicious"],
+    "Substance Abuse/Addiction": ["drug", "addiction", "alcohol", "substance abuse", "opioid", "narcotic"],
+    "Child Abuse/Domestic Violence": ["child abuse", "domestic violence", "molestation", "beating", "hurt"],
+    "Homicide/Gun Violence": ["murder", "homicide", "gunshot", "shooting", "kill", "death"]
 }
 
 def analyze_description(description):
-    """Analyze the book description for specific keywords and return a list of associated content warnings."""
     detected_warnings = []
+    description_lower = description.lower()
 
     for warning, keywords in KEYWORD_WARNINGS.items():
         for keyword in keywords:
-            if fuzz.partial_ratio(keyword, description.lower()) > 80:  # Adjust threshold as needed
+            if fuzz.partial_ratio(keyword, description_lower) > 80:  # Here, 80 is the threshold for matching. Adjust as necessary.
                 detected_warnings.append(warning)
                 break
 
