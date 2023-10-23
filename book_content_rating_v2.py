@@ -4,7 +4,7 @@ import requests
 from fuzzywuzzy import fuzz
 import urllib.parse
 
-# Dictionary for keyword-based content warnings
+# Warning keywords
 KEYWORD_WARNINGS = {
     "Animal Abuse": [ "animal", "cruelty", "neglect", "harm", "suffering", "mistreatment", "abuse",
         "beating", "starvation", "malnourishment", "torment", "torture", "maltreat",
@@ -90,74 +90,75 @@ KEYWORD_WARNINGS = {
         "bloodthirsty", "gun control", "legislation", "concealed carry", "standoff", "altercation"]
 }
 
+OPEN_BOOKS_API_URL = "https://openlibrary.org/search.json"
+
 def analyze_description(description):
-    detected_warnings = []
-    description_lower = description.lower()
+    """
+    Analyzes the description of a book and returns warnings if any keywords are found.
+    """
+    warnings = []
+    for keyword, warning in KEYWORD_WARNINGS.items():
+        if keyword in description.lower():
+            warnings.append(warning)
+    return warnings
 
-    for warning, keywords in KEYWORD_WARNINGS.items():
-        for keyword in keywords:
-            if fuzz.partial_ratio(keyword, description_lower) > 80:  # Here, 80 is the threshold for matching. Adjust as necessary.
-                detected_warnings.append(warning) # Ch should remove duplicates
-                break
+def search_open_books(title, author=""):
+    """
+    Search for a book in the Open Books API
+    """
+    query = {"title": title}
+    if author:
+        query["author"] = author
 
-    return detected_warnings
+    response = requests.get(OPEN_BOOKS_API_URL, params=query)
+    if response.status_code == 200:
+        data = response.json()
+
+        if data and "docs" in data and len(data["docs"]) > 0:
+            return data["docs"][0].get("first_sentence", {}).get("value", "")
+
+    return ""
 
 def search_book_ratings():
     book_title = book_title_entry.get()
     author_name = author_entry.get()
-    
-    if book_title == '': # CH more explicit
+
+    if book_title == '':
         messagebox.showerror("Error", "Please enter a book title.")
         return
 
-    book_title = urllib.parse.quote(book_title)
+    book_title_encoded = urllib.parse.quote(book_title)
+    author_name_encoded = urllib.parse.quote(author_name)
 
-
-    # Create a URL for the Google Books API search
-    api_url = f"https://www.googleapis.com/books/v1/volumes?q=intitle:{book_title}"
-    
+    # Create URLs for the Google Books API search
+    google_api_url = f"https://www.googleapis.com/books/v1/volumes?q=intitle:{book_title_encoded}"
     if author_name:
-        api_url += f"+inauthor:{author_name}"
+        google_api_url += f"+inauthor:{author_name_encoded}"
 
-    try:
-        response = requests.get(api_url)
-        if response.status_code == 200:
-            data = response.json()
+    google_description, open_books_description = "", ""
 
-            if "items" in data and len(data["items"]) > 0:
-                book = data["items"][0]
-                title = book["volumeInfo"]["title"]
-                authors = book["volumeInfo"].get("authors", [])
-                author = ", ".join(authors) if authors else "Unknown"
-                maturity_rating = book["volumeInfo"].get("maturityRating", "Not Rated")
-                description = book["volumeInfo"].get("description", "No description available.")
+    # Fetching Google Books Data
+    response = requests.get(google_api_url)
+    if response.status_code == 200:
+        data = response.json()
 
-                warnings_from_description = analyze_description(description)
-                if warnings_from_description:
-                    extended_warning = f"R (Discretion Advised) - Reasons: {', '.join(warnings_from_description)}"
-                else:
-                    extended_warning = {
-                        "MATURE": f"R (Discretion Advised) - General Mature Content",
-                        "NOT_MATURE": "G (For Everyone)"
-                    }.get(maturity_rating, "Not Rated")
+        if "items" in data and len(data["items"]) > 0:
+            book = data["items"][0]
+            google_description = book["volumeInfo"].get("description", "")
 
-                result_text.config(state=tk.NORMAL)
-                result_text.delete("1.0", "end")
-                result_text.insert("1.0", f"Title: {title}\nAuthor: {author}\nContent Warning Rating: {extended_warning}\n\nDescription:\n{description}")
-                result_text.config(state=tk.DISABLED)
-            else:
-                result_text.config(state=tk.NORMAL)
-                result_text.delete("1.0", "end")
-                result_text.insert("1.0", "No results found for the given criteria.")
-                result_text.config(state=tk.DISABLED)
-        else:
-            messagebox.showerror("Error", "Unable to fetch book information. Please try again later.")
-    except Exception as e:
-        messagebox.showerror("Error", str(e))
+    # Fetching Open Books Data
+    open_books_description = search_open_books(book_title, author_name)
 
+    # Combine descriptions
+    combined_description = f"{google_description} {open_books_description}"
+
+    warnings_from_description = analyze_description(combined_description)
+
+    if warnings_from_description:
+        warning_message = '\n'.join(warnings_from_description)
+        messagebox.showwarning("Warnings", warning_message)
+        import tkinter as tk
 '''
-import tkinter as tk
-
 class MyGUI(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -175,10 +176,9 @@ if __name__ == "__main__":
     app = MyGUI()
     app.mainloop()
 '''
-
 # Create the tkinter window
 root = tk.Tk()
-root.title("Book Content Warning")
+root.title("Book Content Warnings")
 
 # Create instructions for the user
 instructions_label = tk.Label(root, text="Enter a book title and/or an author's name (optional) to search:")
@@ -197,7 +197,7 @@ author_entry = tk.Entry(root, width=50)
 author_entry.pack()
 
 # Create button to search for book content warning ratings and reason
-search_button = tk.Button(root, text="Search for Content Warning", command=search_book_ratings)
+search_button = tk.Button(root, text="Search Content Warning Rating", command=search_book_ratings)
 search_button.pack()
 
 # Create a frame to group result components
