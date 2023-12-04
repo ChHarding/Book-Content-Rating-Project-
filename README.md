@@ -2,6 +2,9 @@
 ## Book Content Rating Project
 HCI 584 - By Miranda Frederick 
 
+## About 
+The purpose of this program is to provide users with content warnings for books. Nine content areas are evaluated for each book searched by the user (listed below). If the content is present in the book information within the search engine, the category is included in the warning section of the search results. To assist with accuracy, after searching for a title, users are presented with a list of search results to choose from. Once they select the correct book, users receive the book description, author name, appropriate content warnings, a photo of the book cover, and a link to purchase the book online in the search results box. All information is subject to availability. 
+
 ## Program Requirements
 ### Python Version:
 Python 3.7 or higher. This is essential as the syntax and libraries used may not be compatible with older versions.
