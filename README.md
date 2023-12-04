@@ -99,6 +99,22 @@ Start with simple requests, understand the response, and then gradually add more
 #### Use API Testing Tools: 
 Tools like Postman can be helpful for testing API requests and responses before coding them.
 
+### How to Run This Application 
+#### From an IDE:
+If you are using an Integrated Development Environment (IDE) like PyCharm, Visual Studio Code, or similar, you can simply open the .py file and run it within the IDE.
+
+#### Using the Command Line:
+Open a terminal or command prompt.
+Navigate to the folder containing your Python script (*.py).
+Execute the script by typing:
+
+python main.py
+
+##### Note:
+Ensure that the working directory (the directory from which you run the script) is the root folder of the project. This is important for the script to correctly locate and import any dependencies or additional modules.
+
+For more advanced configuration or troubleshooting, please refer to the developer's guide or contact the creator for support. 
+
 
 ## Known Issues
 ### Common Errors and Fixes
