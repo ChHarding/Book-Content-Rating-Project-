@@ -3,8 +3,42 @@
 HCI 584 - By Miranda Frederick 
 
 ## Program Requirements
+### Python Version:
+Python 3.7 or higher. This is essential as the syntax and libraries used may not be compatible with older versions.
+
+### External Libraries:
+#### 'requests': 
+This library is used for making HTTP requests to APIs.
+
+#### Pillow (PIL): 
+Required for image processing tasks, particularly for handling book cover images.
+
+#### tkinter: 
+Should be available by default in Python for GUI creation. If not, it might need separate installation depending on the operating system.
+
+#### fuzzywuzzy: 
+Used for string matching operations.
+
+#### beautifulsoup4: 
+Necessary for HTML parsing when fetching data from websites.
+
+#### python-Levenshtein: 
+An optional but recommended dependency for fuzzywuzzy for faster string matching.
+
 
 ## Program Installation
+Prior to using, the environment needs to be set up to run the program. 
+
+### First, Install Python:
+Ensure Python 3.7 or higher is installed on your system. You can download it from the official Python website.
+
+### Second, Install Required Libraries:
+Open a terminal or command prompt.
+Navigate to the project's root directory.
+Run the following command to install all required packages:
+
+pip install requests Pillow fuzzywuzzy beautifulsoup4 python-Levenshtein
+
 
 ## How to Use
 ### Getting Started With APIs
