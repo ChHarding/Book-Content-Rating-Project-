@@ -100,18 +100,23 @@ Start with simple requests, understand the response, and then gradually add more
 Tools like Postman can be helpful for testing API requests and responses before coding them.
 
 ### How to Run This Application 
-#### From an IDE:
-If you are using an Integrated Development Environment (IDE) like PyCharm, Visual Studio Code, or similar, you can simply open the .py file and run it within the IDE.
-
-#### Using the Command Line:
-Open a terminal or command prompt.
-Navigate to the folder containing your Python script (*.py).
-Execute the script by typing:
-
-python main.py
+#### Installing Python:
+1. Download Python: Visit the official Python website and download the latest version of Python (at least Python 3.7 or higher).
+2. Run Installer: Open the downloaded installer. Ensure you check the option "Add Python 3.x to PATH" to make Python accessible from the command line.
+3. Verify Installation: Open your command line (Command Prompt on Windows, Terminal on macOS and Linux) and type python --version. You should see the Python version number if the installation was successful.
+   
+#### Setting Up a Development Environment:
+1. Choose an IDE/Editor: While you can use any text editor, an Integrated Development Environment (IDE) like PyCharm, Visual Studio Code, or Thonny can be more helpful. These IDEs provide features like syntax highlighting, code completion, and easier debugging.
+2. Install an IDE: Download and install your chosen IDE following the instructions on its respective website.
 
 ##### Note:
 Ensure that the working directory (the directory from which you run the script) is the root folder of the project. This is important for the script to correctly locate and import any dependencies or additional modules.
+
+Internet Connection: Ensure you have an active internet connection during the installation process.
+
+Permission Issues: If you encounter permission errors on macOS or Linux, try adding sudo at the beginning of the installation command. On Windows, run the command prompt as an administrator.
+
+Python PATH: If Python commands aren’t recognized, it’s likely an issue with the PATH environment variable. Revisit the Python installer and ensure you select the option to add Python to PATH.
 
 For more advanced configuration or troubleshooting, please refer to the developer's guide or contact the creator for support. 
 
