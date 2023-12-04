@@ -4,9 +4,22 @@ HCI 584 - By Miranda Frederick
 
 ## Program Requirements
 
-## Program Installation Instructions
+## Program Installation
 
 ## How to Use
+### Getting Started With APIs
+What is an API?
+
+API stands for Application Programming Interface. It allows your application to interact with an external service using a set of rules and protocols. In the case of web APIs, these interactions are usually made through HTTP requests.
+Understanding API Requests and Responses
+
+APIs communicate using requests (from your program) and responses (from the API server). Common types of requests include GET (retrieve data), POST (send new data), PUT (update data), and DELETE (remove data).
+JSON Format
+
+Most APIs return data in JSON (JavaScript Object Notation) format, which is easy to read and parse in Python using the json library.
+
+### Basic Examples
+
 
 ## Known Issues
 ### Common Errors and Fixes
@@ -26,5 +39,14 @@ Fix: Verify the internet connection. If the issue persists, the problem might be
 Error Message: "No books found with that title."
 Fix: Ensure the book title is correctly spelled. Try including the author's name for a more precise search.
 
+### Caveats and Limitations
+#### Rate Limiting: 
+Both APIs may have rate limits. Excessive requests in a short period might temporarily block access.
+
+#### Incomplete Data: 
+Sometimes, the APIs might return incomplete data (e.g., missing author or publication year).
+
+#### No Image URLs: 
+Open Library API may not always provide image URLs for book covers.
 
 ## Awknowledgements 
