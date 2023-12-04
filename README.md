@@ -8,7 +8,7 @@ HCI 584 - By Miranda Frederick
 
 ## How to Use
 ### Getting Started With APIs
-What is an API?
+#### What is an API?
 
 API stands for Application Programming Interface. It allows your application to interact with an external service using a set of rules and protocols. In the case of web APIs, these interactions are usually made through HTTP requests.
 Understanding API Requests and Responses
@@ -19,6 +19,51 @@ JSON Format
 Most APIs return data in JSON (JavaScript Object Notation) format, which is easy to read and parse in Python using the json library.
 
 ### Basic Examples
+#### Making a Simple API Request
+Start with a basic GET request to fetch data. For example, retrieving a book's information from Google Books API:
+
+import requests
+
+response = requests.get("https://www.googleapis.com/books/v1/volumes?q=title:1984")
+book_data = response.json()
+print(book_data)
+
+#### Parsing API Responses
+Learn to parse JSON responses to extract useful information:
+
+title = book_data['items'][0]['volumeInfo']['title']
+authors = book_data['items'][0]['volumeInfo']['authors']
+print(f"Title: {title}, Authors: {authors}")
+
+#### Using Parameters with API Requests
+Make a more complex request by adding parameters to your API call:
+
+params = {
+    'q': 'title:To Kill a Mockingbird',
+    'maxResults': 2
+}
+response = requests.get("https://www.googleapis.com/books/v1/volumes", params=params)
+data = response.json()
+for book in data['items']:
+    print(book['volumeInfo']['title'])
+
+#### Handling API Errors
+It's important to handle potential errors in API requests:
+
+if response.status_code == 200:
+    # Process successful response
+else:
+    print(f"Error: {response.status_code}")
+
+### API Tips for Beginners
+#### Read the API Documentation: 
+Before using any API, read its documentation to understand its usage limits, available endpoints, required parameters, and the data format it returns.
+
+#### Experiment in Small Steps: 
+Start with simple requests, understand the response, and then gradually add more complexity like error handling, headers, and query parameters.
+
+#### Use API Testing Tools: 
+Tools like Postman can be helpful for testing API requests and responses before coding them.
 
 
 ## Known Issues
