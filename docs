@@ -72,7 +72,18 @@ Involved Functions:
   Input Validation: search_book_ratings checks if the input field is not empty.
   API Calls: It calls get_book_info, which internally uses search_google_books and search_open_books to fetch data from Google Books and Open Library APIs, respectively.
 
+3. Displaying Search Results: A new window is opened, displaying buttons for each search result.
+Each button is labeled with the book title and author.
+Involved Function:
+  Window and Button Creation: show_book_selection_window creates a tk.Toplevel window and populates it with book options using tk.Button.
 
+4. Selecting a book: The user selects a book, and the 'on_book_selection' is called. More detailed information about the book is shown including: the author name, book description, content warnings, link to purchase the book and photo of book cover.
+Involved Functions:
+  Book Selection: on_book_selection.
+  Displaying Book Info: display_selected_book, which handles the display of title, author, content warnings, and purchase link.
+  Fetching Description: get_google_books_description_and_img_URL or get_open_books_description.
+  Content Warning Analysis: analyze_description.
+  Image Display: show_book_image for displaying the book's cover image.
 
 ## Known Issues and Limitations 
 ### API Dependency and Reliability:
@@ -121,3 +132,13 @@ Update the UI to be more dynamic and responsive to different content lengths and
 
 ### Add Automated Testing: 
 Develop a suite of automated tests to ensure the reliability and stability of the code.
+
+##Classes and Functions Hierarchy
+###Main Class:
+The program doesn’t use a specific class structure but is built around the Tkinter main loop and its event-driven paradigm.
+
+###Module Organization:
+The functionalities are organized into functions, each responsible for specific tasks (API calls, UI updates, etc.).
+
+###Function Specifics:
+Functions like search_google_books, search_open_books, analyze_description, show_book_selection_window, on_book_selection, display_selected_book, show_book_image, clear_result, and search_book_ratings are central to the program's operation.
