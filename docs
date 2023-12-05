@@ -60,6 +60,19 @@ For collaborative projects, establish a workflow with branches, pull requests, a
 
 
 ## User Walkthrough
+## Interaction Flow 
+1. Program start: main window is displayed with a search bar and results window (empty) displayed below. 
+Involved Elements:
+  Window Creation: root = tk.Tk() initializes the main application window.
+  Widgets: instructions_label, book_title_label, book_title_entry, search_button, result_frame, result_label, result_text, clear_button, image_frame.
+
+2. Searching for a Book: The user enters a book title and clicks the "Search Content Warning Rating" button.
+This triggers the search_book_ratings function.
+Involved Functions:
+  Input Validation: search_book_ratings checks if the input field is not empty.
+  API Calls: It calls get_book_info, which internally uses search_google_books and search_open_books to fetch data from Google Books and Open Library APIs, respectively.
+
+
 
 ## Known Issues and Limitations 
 ### API Dependency and Reliability:
