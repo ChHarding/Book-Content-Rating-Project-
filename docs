@@ -1,1 +1,19 @@
+# Developer's Documentation 
+Book Content Warning Generator 
+
+## Program Overview
+The purpose of this program is to provide users with content warnings for books. Nine content areas are evaluated for each book searched by the user (listed below). If the content is present in the book information within the search engine, the category is included in the warning section of the search results. To assist with accuracy, after searching for a title, users are presented with a list of search results to choose from. Once they select the correct book, users receive the book description, author name, appropriate content warnings, a photo of the book cover, and a link to purchase the book online in the search results box. All information is subject to availability. 
+
+## Content Warning Categories: 
+  1.	Animal Abuse
+  2.	Sexual Violence
+  3.	Body Image/Disordered Eating
+  4.	Self-Harm/Suicide
+  5.	Discrimination/Hate Crimes
+  6.	Violence & Graphic Content
+  7.	Substance Abuse/Addiction
+  8.	Child Abuse/Domestic Violence
+  9.	Homicide/Gun Violence
+
+The 9 content warning types are NOT an extensive list and are meant to provide general categories for content that may be upsetting or difficult for readers to consume. Content areas were developed with guidance from the National Institute of Health’s Narrative Experiences Online (NEON) content warning typology list (Charles et al., 2022).
 
