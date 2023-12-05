@@ -153,3 +153,5 @@ Sometimes, the APIs might return incomplete data (e.g., missing author or public
 Open Library API may not always provide image URLs for book covers.
 
 ## Awknowledgements 
+
+Thank you to our professor, Chris Harding, for his guidance and assistance throughout the semester on my first Python project. In addition, thank you to the friends who acted as testers for me throughout the semester and acted as my first users!
