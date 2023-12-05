@@ -401,7 +401,8 @@ def get_book_info(title, author=""):
 
     # Apply duplicate removal to both API results and combine them
     google_books_nodup = remove_dups(google_books)
-    open_books_n
+    open_books_nodup = remove_dups(open_books)
+    return google_books_nodup + open_books_nodup
 
 
 def show_book_selection_window(books):
