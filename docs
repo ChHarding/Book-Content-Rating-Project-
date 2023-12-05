@@ -85,6 +85,8 @@ Involved Functions:
   Content Warning Analysis: analyze_description.
   Image Display: show_book_image for displaying the book's cover image.
 
+
+
 ## Known Issues and Limitations 
 ### API Dependency and Reliability:
 The program heavily relies on external APIs (Google Books and Open Library). Any downtime or changes in these APIs could directly impact the functionality of the program.
