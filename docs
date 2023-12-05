@@ -4,7 +4,7 @@ Book Content Warning Generator
 ## Program Overview
 The purpose of this program is to provide users with content warnings for books. Nine content areas are evaluated for each book searched by the user (listed below). If the content is present in the book information within the search engine, the category is included in the warning section of the search results. To assist with accuracy, after searching for a title, users are presented with a list of search results to choose from. Once they select the correct book, users receive the book description, author name, appropriate content warnings, a photo of the book cover, and a link to purchase the book online in the search results box. All information is subject to availability. 
 
-## Content Warning Categories: 
+### Content Warning Categories: 
   1.	Animal Abuse
   2.	Sexual Violence
   3.	Body Image/Disordered Eating
@@ -16,4 +16,45 @@ The purpose of this program is to provide users with content warnings for books.
   9.	Homicide/Gun Violence
 
 The 9 content warning types are NOT an extensive list and are meant to provide general categories for content that may be upsetting or difficult for readers to consume. Content areas were developed with guidance from the National Institute of Health’s Narrative Experiences Online (NEON) content warning typology list (Charles et al., 2022).
+
+All parts of the original specs are implemented into the final program. 
+
+## Install/Deployment Issues 
+
+Basic troubleshooting instructions are included in the User's Guide. 
+
+### Advanced Installation and Configuration
+
+#### Virtual Environments:
+Why Use Virtual Environments: For development purposes, it's good practice to work within a virtual environment. This isolates your project dependencies from global Python installations and ensures consistency across development setups.
+
+Creating a Virtual Environment: In the project root directory, run python -m venv venv. This creates a new virtual environment named 'venv'.
+
+Activating the Virtual Environment:
+  Windows: Run venv\Scripts\activate.
+  macOS/Linux: Run source venv/bin/activate.
+
+Install Dependencies in the Virtual Environment: With the virtual environment activated, run pip install -r requirements.txt (assuming you have a requirements.txt file with all necessary packages listed).
+
+#### Dependency Management:
+Requirements File: Ensure that all dependencies are correctly listed in a requirements.txt file. This file should be updated whenever a new library is added or when versions change.
+
+### Running the Application with Elevated Privileges
+Depending on the system configuration or specific development tasks (e.g., binding to well-known ports, accessing protected system resources), you might need to run the application with elevated privileges.
+  Windows: Right-click on the command prompt and select "Run as administrator".
+  macOS/Linux: Use sudo before your command to grant administrative privileges.
+
+### Deployment Considerations
+Server Deployment: If deploying a server version of this application (e.g., for an API):
+  Ensure the server environment matches the development environment regarding Python version and installed libraries.
+  Consider using containerization (like Docker) for easier deployment and scalability.
+Database Integration: If your application scales to require a database, ensure proper configuration and connection handling. This might involve setting up a database schema, ORM integration, and connection pooling.
+
+### Debugging and Logging
+Implement robust logging to track the application's behavior during development and after deployment. Python's logging module can be configured to log info, warnings, errors, and debug messages.
+For debugging, IDEs like PyCharm or VSCode offer integrated debugging tools. Learn to set breakpoints and inspect variables.
+
+### Version Control and Collaboration
+Use version control (like Git) for source code management. Regularly commit and push changes to a remote repository.
+For collaborative projects, establish a workflow with branches, pull requests, and code reviews to maintain code quality and manage contributions effectively.
 
