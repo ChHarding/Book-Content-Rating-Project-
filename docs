@@ -58,3 +58,53 @@ For debugging, IDEs like PyCharm or VSCode offer integrated debugging tools. Lea
 Use version control (like Git) for source code management. Regularly commit and push changes to a remote repository.
 For collaborative projects, establish a workflow with branches, pull requests, and code reviews to maintain code quality and manage contributions effectively.
 
+
+## User Walkthrough
+
+## Known Issues and Limitations 
+### API Dependency and Reliability:
+The program heavily relies on external APIs (Google Books and Open Library). Any downtime or changes in these APIs could directly impact the functionality of the program.
+Changes in API response structures are not dynamically handled, which could lead to issues if either API updates its response format.
+
+### Error Handling:
+The current error handling is basic. It primarily focuses on connection issues but may not adequately handle other types of errors (e.g., rate limiting, data format errors).
+Errors in image loading and API responses are logged to the console, which may not be visible to all users.
+
+### Rate Limiting:
+The program does not currently handle rate limiting imposed by the APIs. Frequent requests in a short period could potentially lead to temporary IP bans or reduced functionality.
+
+### Image Loading Failures:
+The program attempts to load book images from URLs provided by the APIs. If the image URL is broken, incorrect, or the server hosting the image is down, the image will not load, but the program does not provide feedback to the user about this failure.
+
+### No Offline Functionality:
+The application requires an active internet connection to function, as it fetches data in real-time from online sources. There's no offline capability or caching of previous search results.
+
+### User Interface Limitations:
+The current GUI layout is fixed and may not scale well with different screen resolutions or aspect ratios.
+Long book titles or author names might not display properly in the GUI.
+
+### Scalability and Performance:
+The program is not optimized for handling large volumes of requests or processing large datasets. Performance may degrade with increased load.
+
+### Limited Search Functionality:
+Search functionality is basic and does not support advanced queries, filters, or sorting, which might be needed for more refined searches.
+
+### Lack of Automated Testing:
+The program lacks automated tests, which are crucial for ensuring code reliability, especially when making changes or adding new features.
+
+### Single-threaded Nature of Tkinter:
+Tkinter’s single-threaded nature means that long-running operations (like API calls) can cause the UI to freeze. Implementing asynchronous calls or threading can mitigate this issue.
+
+
+## Future Work for the Program 
+### Enhance Error Handling: 
+Implement more comprehensive error handling and user notifications.
+
+### Implement Caching: 
+Consider caching API responses to improve performance and add offline functionality.
+
+### UI Improvements: 
+Update the UI to be more dynamic and responsive to different content lengths and window sizes.
+
+### Add Automated Testing: 
+Develop a suite of automated tests to ensure the reliability and stability of the code.
